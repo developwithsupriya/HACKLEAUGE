@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackLeague - Your Ultimate Hackathon Guide</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1E3A8A;
+            --accent-orange: #F97316;
+            --light-blue: #60A5FA;
+            --gray: #6B7280;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #1F2937;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .bg-gradient {
+            background: linear-gradient(120deg, var(--primary-blue), #2563EB);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.25);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(249, 115, 22, 0.3);
+        }
+        
+        .feature-card {
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .nav-link {
+            position: relative;
+            margin: 0 1rem;
+            font-weight: 600;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .animated-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .circle-bg {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(96, 165, 250, 0.1);
+            z-index: -1;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .badge-beginner {
+            background-color: #DEF7EC;
+            color: #047857;
+        }
+        
+        .badge-intermediate {
+            background-color: #E0F2FE;
+            color: #0369A1;
+        }
+        
+        .badge-advanced {
+            background-color: #EEF2FF;
+            color: #4F46E5;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Animation for count-up statistics */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .count-up {
+            animation: countUp 1s ease forwards;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 py-4">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold text-primary-blue flex items-center">
+                    <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#1E3A8A"/>
+                        <path d="M2 17L12 22L22 17" stroke="#1E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="#1E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span style="color: #1E3A8A;">Hack<span style="color: #F97316;">League</span></span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#levels" class="nav-link">Skill Levels</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+            </div>
+            <div class="flex items-center">
+                <a href="signin.html" class="btn-primary">Join the Community</a>
+                <button class="md:hidden ml-4 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div class="circle-bg top-20 right-0"></div>
+        <div class="circle-bg bottom-0 -left-20"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-10">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+                        <span class="text-gray-800">Your Ultimate</span>
+                        <span class="text-blue-800 block">Hackathon Guide</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Discover, prepare, compete, and grow with the ultimate hackathon platform designed specifically for students. Simplify your hackathon journey and maximize your potential!
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="signin.html" class="btn-primary text-center">Join the Community</a>
+                        <a href="#how-it-works" class="text-gray-700 font-semibold flex items-center justify-center">
+                            Learn More
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-10 md:mt-0">
+                    <img src="/api/placeholder/600/400" alt="Students collaborating at hackathon" class="rounded-lg shadow-xl floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is a Hackathon Section -->
+    <section class="py-20 bg-gray-50 px-4" id="how-it-works">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What is a <span class="text-blue-600">Hackathon</span>?</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    A hackathon is an event where programmers, designers, and other tech enthusiasts collaborate intensively to create innovative solutions in a limited time frame.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Ideation & Innovation</h3>
+                    <p class="text-gray-600">
+                        Brainstorm creative solutions to real-world problems and turn your ideas into working prototypes.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Collaboration & Networking</h3>
+                    <p class="text-gray-600">
+                        Work with diverse teams, make connections, and learn from peers and industry mentors.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Skill Development</h3>
+                    <p class="text-gray-600">
+                        Enhance your technical abilities, presentation skills, and problem-solving capabilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4" id="features">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">How <span class="text-blue-600">HackLeague</span> Helps You</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Our platform simplifies every aspect of the hackathon experience, from discovery to submission.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white">
+                    <div class="feature-icon bg-blue-600">
+                        <i class="fas fa-search text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Hackathon Aggregation</h3>
+                    <p class="text-gray-600">
+                        Discover events matching your interests and skill level from one central location, saving you hours of searching.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white">
+                    <div class="feature-icon bg-indigo-600">
+                        <i class="fas fa-thumbs-up text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Personalized Recommendations</h3>
+                    <p class="text-gray-600">
+                        Get tailored event suggestions based on your skills, interests, and past participation history.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white">
+                    <div class="feature-icon bg-purple-600">
+                        <i class="fas fa-map text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Roadmaps & Learning Resources</h3>
+                    <p class="text-gray-600">
+                        Follow structured paths to build the specific skills needed for upcoming hackathons you're interested in.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white">
+                    <div class="feature-icon bg-pink-600">
+                        <i class="fas fa-bell text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Deadline Management</h3>
+                    <p class="text-gray-600">
+                        Never miss important dates with automated reminders and a personalized hackathon calendar.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white">
+                    <div class="feature-icon bg-yellow-500">
+                        <i class="fas fa-robot text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">AI-Powered Assistance</h3>
+                    <p class="text-gray-600">
+                        Receive intelligent feedback to improve your submissions and increase your chances of winning.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white">
+                    <div class="feature-icon bg-green-600">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Community Networking</h3>
+                    <p class="text-gray-600">
+                        Connect with other participants, form teams based on complementary skills, and share knowledge.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Levels Section -->
+    <section class="py-20 bg-gray-50 px-4" id="levels">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">For <span class="text-blue-600">All Skill Levels</span></h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Whether you're just starting out or you're an experienced hacker, HackLeague has resources tailored to your needs.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Beginner -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 py-6 px-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Beginner</h3>
+                        <p>Just getting started with coding and hackathons</p>
+                    </div>
+                    <div class="p-6">
+                      <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Foundational learning paths</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Beginner-friendly hackathon recommendations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/0000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Step-by-step project guides</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Mentorship matching</span>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div class="bg-gradient-to-r from-blue-500 to-blue-600 py-6 px-6 text-white">
+                      <h3 class="text-2xl font-bold mb-2">Intermediate</h3>
+                      <p>Some experience with coding and hackathons</p>
+                  </div>
+                  <div class="p-6">
+                      <ul class="space-y-3">
+                          <li class="flex items-start">
+                              <svg class="w-5 h-5 text-blue-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                              </svg>
+                              <span>Advanced project tutorials</span>
+                          </li>
+                          <li class="flex items-start">
+                              <svg class="w-5 h-5 text-blue-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                              </svg>
+                              <span>Team formation recommendations</span>
+                          </li>
+                          <li class="flex items-start">
+                              <svg class="w-5 h-5 text-blue-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                              </svg>
+                              <span>Specialized skill development</span>
+                          </li>
+                          <li class="flex items-start">
+                              <svg class="w-5 h-5 text-blue-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                              </svg>
+                              <span>Submission optimization tools</span>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+                
+                <!-- Advanced -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 py-6 px-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Advanced</h3>
+                        <p>Experienced hackers looking for challenges</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>High-stakes competition alerts</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Industry connection opportunities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Professional project feedback</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-purple-500 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Mentorship opportunities</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4" id="testimonials">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our <span class="text-blue-600">Community Says</span></h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Join thousands of students who have transformed their hackathon experience with HackLeague.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <img src="/api/placeholder/60/60" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Alex Johnson</h4>
+                            <div>
+                                <span class="level-badge badge-beginner">Beginner</span>
+                                <span class="text-gray-500 text-sm">Computer Science, MIT</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "As a first-time hacker, I was totally lost until I found HackLeague. The beginner roadmaps helped me prepare, and I ended up winning Best UI/UX at my first hackathon!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <img src="/api/placeholder/60/60" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Priya Sharma</h4>
+                            <div>
+                                <span class="level-badge badge-intermediate">Intermediate</span>
+                                <span class="text-gray-500 text-sm">Data Science, Stanford</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "The team matching feature is a game-changer! I found collaborators with complementary skills, and we've now participated in three hackathons together with two wins."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <img src="/api/placeholder/60/60" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Chang</h4>
+                            <div>
+                                <span class="level-badge badge-advanced">Advanced</span>
+                                <span class="text-gray-500 text-sm">Machine Learning, Georgia Tech</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Even as an experienced hacker, HackLeague has been invaluable. The AI feedback on my projects helped me refine my pitch, leading to an internship offer from my dream company!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-gradient text-white px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <div class="text-4xl md:text-5xl font-bold mb-2 count-up">500+</div>
+                    <p class="text-blue-200">Hackathons Listed</p>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl md:text-5xl font-bold mb-2 count-up">10,000+</div>
+                    <p class="text-blue-200">Active Users</p>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl md:text-5xl font-bold mb-2 count-up">85%</div>
+                    <p class="text-blue-200">Success Rate</p>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl md:text-5xl font-bold mb-2 count-up">2,500+</div>

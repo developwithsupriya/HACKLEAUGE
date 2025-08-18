@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join HackLeague - Sign Up</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1E3A8A;
+            --accent-orange: #F97316;
+            --light-blue: #60A5FA;
+            --gray: #6B7280;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #1F2937;
+            background-color: #F9FAFB;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.25);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(249, 115, 22, 0.3);
+        }
+
+        .form-card {
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--light-blue);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4B5563;
+        }
+
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #D1D5DB;
+            background-color: white;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .social-button:hover {
+            background-color: #F3F4F6;
+        }
+
+        .social-icon {
+            margin-right: 0.75rem;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6B7280;
+            cursor: pointer;
+        }
+
+        .password-strength {
+            height: 5px;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .password-strength-weak {
+            width: 33%;
+            background-color: #EF4444;
+        }
+
+        .password-strength-medium {
+            width: 66%;
+            background-color: #F59E0B;
+        }
+
+        .password-strength-strong {
+            width: 100%;
+            background-color: #10B981;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .progress-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-circle.active {
+            background-color: var(--accent-orange);
+        }
+
+        .progress-circle.completed {
+            background-color: #10B981;
+        }
+
+        .progress-circle.inactive {
+            background-color: #D1D5DB;
+        }
+
+        .progress-line {
+            flex: 1;
+            height: 3px;
+            background-color: #E5E7EB;
+            margin: 15px 10px;
+        }
+
+        .progress-line.active {
+            background-color: var(--accent-orange);
+        }
+
+        .circle-bg {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(96, 165, 250, 0.1);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="w-full bg-white shadow-md z-50 py-4">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html" class="text-2xl font-bold flex items-center">
+                    <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#1E3A8A"/>
+                        <path d="M2 17L12 22L22 17" stroke="#1E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="#1E3A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span style="color: #1E3A8A;">Hack<span style="color: #F97316;">League</span></span>
+                </a>
+            </div>
+            <div class="flex items-center">
+                <a href="index.html" class="text-gray-600 mr-4">Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sign Up Form Section -->
+    <section class="py-16 px-4 relative min-h-screen">
+        <div class="circle-bg top-20 left-0"></div>
+        <div class="circle-bg bottom-20 right-0"></div>
+        <div class="container mx-auto max-w-3xl relative z-10">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">Join the HackLeague Community</h1>
+                <p class="text-gray-600">Create your account to start your hackathon journey.</p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-indicator mb-8">
+                <div class="progress-step">
+                    <div class="progress-circle active">1</div>
+                    <span class="text-sm">Account</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="progress-circle inactive">2</div>
+                    <span class="text-sm">Profile</span>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="form-card bg-white p-8 mb-8">
+                <form id="signup-form" action="profile.html+" method="post">
+                    <!-- Personal Information -->
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold mb-4">Personal Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="first-name" class="form-label">First Name</label>
+                                <input type="text" id="first-name" name="first-name" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="last-name" class="form-label">Last Name</label>
+                                <input type="text" id="last-name" name="last-name" class="form-input" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold mb-4">Contact Information</h2>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information -->
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold mb-4">Academic Information</h2>
+                        <div class="mb-4">
+                            <label for="institution" class="form-label">Institution/University</label>
+                            <input type="text" id="institution" name="institution" class="form-input" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="education-level" class="form-label">Education Level</label>
+                            <select id="education-level" name="education-level" class="form-input" required>
+                                <option value="" disabled selected>Select your education level</option>
+                                <option value="high-school">High School</option>
+                                <option value="undergraduate-1">Undergraduate (Year 1)</option>
+                                <option value="undergraduate-2">Undergraduate (Year 2)</option>
+                                <option value="undergraduate-3">Undergraduate (Year 3)</option>
+                                <option value="undergraduate-4">Undergraduate (Year 4)</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="self-taught">Self-taught</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Password Section -->
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold mb-4">Security</h2>
+                        <div class="mb-4 relative">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-input pr-10" required>
+                            <span class="password-toggle">
+                                <i class="far fa-eye"></i>
+                            </span>
+                            <div class="password-strength password-strength-weak"></div>
+                            <p class="text-sm text-gray-500 mt-1">Password strength: <span id="password-strength-text">Weak</span></p>
+                        </div>
+                        <div class="mb-4">
+                            <button type="button" id="generate-password" class="text-blue-600 text-sm font-semibold">Generate Strong Password</button>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="mb-6">
+                        <label class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2" required>
+                            <span class="text-sm text-gray-600">
+                                I agree to the <a href="#" class="text-blue-600">Terms of Service</a> and <a href="#" class="text-blue-600">Privacy Policy</a>
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mb-6">
+                        <button type="submit" class="btn-primary w-full py-3">Create Account</button>
+                    </div>
+                </form>
+
+                <!-- Social Sign-up Options -->
+                <div class="text-center">
+                    <p class="text-gray-500 mb-4">Or sign up with</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button class="social-button">
+                            <i class="fab fa-google social-icon"></i>
+                            Google
+                        </button>
+                        <button class="social-button">
+                            <i class="fab fa-github social-icon"></i>
+                            GitHub
+                        </button>
+                        <button class="social-button">
+                            <i class="fas fa-university social-icon"></i>
+                            University SSO
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign In Link -->
+            <div class="text-center">
+                <p class="text-gray-600">
+                    Already have an account? <a href="#" class="text-blue-600 font-semibold">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="text-xl font-bold flex items-center">
+                        <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#60A5FA"/>
+                            <path d="M2 17L12 22L22 17" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        HackLeague
+                    </div>
+                    <p class="text-gray-400 mt-2">Your Ultimate Hackathon Guide</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                &copy; 2025 HackLeague. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Password visibility toggle
+        document.querySelector('.password-toggle').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        });
+        
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.querySelector('.password-strength');
+            const strengthText = document.getElementById('password-strength-text');
+            
+            // Simple password strength logic
+            if (password.length < 8) {
+                strengthBar.className = 'password-strength password-strength-weak';
+                strengthText.textContent = 'Weak';
+            } else if (password.length >= 8 && password.length < 12) {
+                strengthBar.className = 'password-strength password-strength-medium';
+                strengthText.textContent = 'Medium';
+            } else {
+                strengthBar.className = 'password-strength password-strength-strong';
+                strengthText.textContent = 'Strong';
+            }
+        });
+        
+        // Generate password
+        document.getElementById('generate-password').addEventListener('click', function() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+            let password = '';
+            for (let i = 0; i < 15; i++) {
+                password += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            
+            document.getElementById('password').value = password;
+            
+            // Trigger input event to update strength indicator
+            document.getElementById('password').dispatchEvent(new Event('input'));
+        });
+        
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'complete profile.html';
+        });
+    </script>
+</body>
+</html>
