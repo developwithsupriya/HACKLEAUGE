@@ -117,12 +117,22 @@
   </div>
 
   <!-- Branch -->
-  <div class="mb-4">
-    <label for="branch" class="form-label">Branch</label>
-    <input type="text" id="branch" name="branch" class="form-input" required>
-  </div>
+<div class="mb-4">
+  <label for="branch" class="form-label">Branch</label>
+  <select id="branch" name="branch" class="form-input" required>
+    <option value="" disabled selected>Select your branch</option>
+    <option value="B.Tech Computer Science">B.Tech Computer Science</option>
+    <option value="B.Tech Information Technology">B.Tech Information Technology</option>
+    <option value="B.Tech Electronics & Communication">B.Tech Electronics & Communication</option>
+    <option value="B.Tech Electrical Engineering">B.Tech Electrical Engineering</option>
+    <option value="B.Tech Mechanical Engineering">B.Tech Mechanical Engineering</option>
+    <option value="B.Tech Civil Engineering">B.Tech Civil Engineering</option>
+    <option value="B.Tech Chemical Engineering">B.Tech Chemical Engineering</option>
+    <option value="Other">Other</option>
+  </select>
 </div>
 
+  <!-- EDUCATION LEVEL -->
           <div class="mb-4">
             <label for="education-level" class="form-label">Education Level</label>
             <select id="education-level" name="education-level" class="form-input" required>
@@ -225,6 +235,7 @@
     const lastName = document.getElementById('last-name').value;
     const email = document.getElementById('email').value;
     const institution = document.getElementById('institution').value;
+    const branch = document.getElementById("branch").value;
     const educationLevel = document.getElementById('education-level').value;
 
     // Store in localStorage
@@ -233,6 +244,7 @@
     localStorage.setItem("fullName", firstName + " " + lastName);
     localStorage.setItem("email", email);
     localStorage.setItem("institution", institution);
+    localStorage.setItem("branch", branch);
     localStorage.setItem("educationLevel", educationLevel);
 
     // Redirect to complete profile page

@@ -293,20 +293,24 @@
                         <p class="text-sm text-gray-500">+3 from last month</p>
                     </div>
                     
-                    <div class="dashboard-card">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-bold text-gray-700">Skill Level</h3>
-                            <div class="bg-purple-100 p-2 rounded-full">
-                                <i class="fas fa-chart-line text-purple-600"></i>
-                            </div>
-                        </div>
-                        <p class="text-3xl font-bold">Intermediate</p>
-                        <div class="w-full mt-2">
-                            <div class="progress-bar">
-                                <div class="progress-bar-fill" style="width: 65%"></div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="dashboard-card">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-lg font-bold text-gray-700">Skill Level</h3>
+    <div class="bg-purple-100 p-2 rounded-full">
+      <i class="fas fa-chart-line text-purple-600"></i>
+    </div>
+  </div>
+  
+  <!-- This will be replaced dynamically -->
+  <p class="text-3xl font-bold" id="skillLevelText">Loading...</p>  
+
+  <div class="w-full mt-2">
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="skillProgressBar"></div>
+    </div>
+  </div>
+</div>
+
                     
                     <div class="dashboard-card">
                         <div class="flex items-center justify-between mb-4">
@@ -610,13 +614,22 @@
             </div>
             <script>
   // LocalStorage se data fetch
-  const name = localStorage.getItem("fullName") || "Guest User";
-  const branch = localStorage.getItem("institution") || "Not Provided";
+const name = localStorage.getItem("fullName") || "Guest User";
+const institution = localStorage.getItem("institution") || "Not Provided";
+const branch = localStorage.getItem("branch") || "Not Provided";
+const experience = localStorage.getItem("experience") || "Beginner";
+let progress = 0;
+if (experience === "Beginner") progress = 30;
+else if (experience === "Intermediate") progress = 65;
+else if (experience === "Advanced") progress = 90;
 
-  // DOM me set karna
-  document.getElementById("profileName").textContent = name;
-  document.getElementById("profileBranch").textContent = branch;
+// DOM me set karna
+document.getElementById("profileName").textContent = name;
+document.getElementById("profileBranch").textContent = `${institution} • ${branch}`;
 document.getElementById("welcomeText").textContent = `Welcome back, ${name}!`;
+document.getElementById("skillLevelText").textContent = experience;
+document.getElementById("skillProgressBar").style.width = progress + "%";
+
 
 </script>
 
