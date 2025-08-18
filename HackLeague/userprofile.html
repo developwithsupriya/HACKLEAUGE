@@ -182,16 +182,15 @@
                     <span style="color: #1E3A8A;">Hack<span style="color: #F97316;">League</span></span>
                 </div>
                 
-                <div class="mb-8">
-                    <div class="flex items-center mb-4">
-                        <img src="/api/placeholder/50/50" alt="Profile" class="w-12 h-12 rounded-full mr-3">
-                        <div>
-                            <h3 class="font-bold">Sarah Kim</h3>
-                            <p class="text-sm text-gray-500">Computer Science</p>
-                        </div>
-                    </div>
-                </div>
-                
+           <div class="mb-8">
+  <div class="flex items-center mb-4">
+      <img src="/api/placeholder/50/50" alt="Profile" class="w-12 h-12 rounded-full mr-3">
+      <div>
+          <h3 class="font-bold" id="profileName"></h3>
+          <p class="text-sm text-gray-500" id="profileBranch"></p>
+      </div>
+  </div>
+</div>
                 <nav>
                     <a href="#" class="sidebar-link active">
                         <i class="fas fa-th-large mr-3"></i>
@@ -268,7 +267,7 @@
             
             <!-- Dashboard Content -->
             <div class="p-6">
-                <h1 class="text-2xl font-bold mb-6">Welcome back, Sarah!</h1>
+<h1 class="text-2xl font-bold mb-6" id="welcomeText">Welcome back!</h1>
                 
                 <!-- Stats Row -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -609,3 +608,18 @@
                     </div>
                 </div>
             </div>
+            <script>
+  // LocalStorage se data fetch
+  const name = localStorage.getItem("fullName") || "Guest User";
+  const branch = localStorage.getItem("institution") || "Not Provided";
+
+  // DOM me set karna
+  document.getElementById("profileName").textContent = name;
+  document.getElementById("profileBranch").textContent = branch;
+document.getElementById("welcomeText").textContent = `Welcome back, ${name}!`;
+
+</script>
+
+
+</body>
+</head>
